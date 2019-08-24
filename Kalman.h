@@ -40,6 +40,28 @@
 
 using namespace BLA;
 
+template<int dim, class ElemT> struct Diagonal
+{
+    mutable ElemT m[dim];
+
+    // The only requirement on this class is that it implement the () operator like so:
+    typedef ElemT elem_t;
+
+    ElemT &operator()(int row, int col) const
+    {
+        static ElemT dummy;
+
+        // If it's on the diagonal and it's not larger than the matrix dimensions then return the element
+        if(row == col && row < dim)
+            return m[row];
+        else
+            // Otherwise return a zero
+            return (dummy = 0);
+    }
+};
+
+
+
 /**********      CLASS DEFINITION      **********/
 
 template<int Nstate, int Nobs, int Ncom = 0>
@@ -47,7 +69,7 @@ class KALMAN{
   private:
     BLA::Matrix<Nstate,1> NULLCOMSTATE;
     void _update(BLA::Matrix<Nobs> obs, BLA::Matrix<Nstate> comstate);
-    BLA::Matrix<Nstate,Nstate> Id; // Identity matrix
+    BLA::Matrix<Nstate,Nstate, Diagonal<Nstate,float> > Id; // Identity matrix
   public:
     BLA::Matrix<Nstate,Nstate> F; // time evolution matrix
     BLA::Matrix<Nobs,Nstate> H; // observation matrix
@@ -156,10 +178,7 @@ KALMAN<Nstate,Nobs,Ncom>::KALMAN(bool verb){
   }
   P.Fill(0.0);
   x.Fill(0.0);
-  Id.Fill(0.0);
-  for(int i=0;i<Nstate;i++){
-    Id(i,i) = 1.0;
-  }
+  Id.Fill(1.0);
   NULLCOMSTATE.Fill(0.0);
 };
 
