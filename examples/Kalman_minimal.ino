@@ -1,7 +1,12 @@
 /* 
  * This code is a minimal empty shell.
  * Fill it and modify it to match your own case.
- *
+ * 
+ * Author:
+ *  R.JL. Fétick
+ * 
+ * Revision:
+ *  24 Aug 2019 - Creation
  */
 
 #include "Kalman.h"
