@@ -48,7 +48,7 @@ You can also add all the `Kalman` files in the same folder of one of your Arduin
 
 Examples are provided in the so-called `examples/` subfolder. Open them to get an idea on how to use the Kalman library.
 
-![alt text](examples/kalman_python.PNG "Kalman filter applied to noisy data")
+![alt text](examples/kalman_step/kalman_step.png "Kalman filter applied to noisy data")
 
 _The figure above shows two examples of Kalman filter (blue) applied on noisy data (green). The true state (red) is a step function. On the left graph, components of_ Q  _are chosen small (high inertia). Noise is efficiently filtered but response time is longer with respect to the right graph._
 
