@@ -50,7 +50,7 @@ Examples are provided in the so-called `examples/` subfolder. Open them to get a
 
 ![alt text](examples/kalman_python.PNG "Kalman filter applied to noisy data")
 
-The figure above shows two examples of Kalman filter (blue) applied on noisy data (green). The true state (red) is a step function. On the left graph, _Q_ components are chosen small (high inertia). Noise is efficiently filtered but response time is longer with respect to the right graph.
+_The figure above shows two examples of Kalman filter (blue) applied on noisy data (green). The true state (red) is a step function. On the left graph, components of_ Q  _are chosen small (high inertia). Noise is efficiently filtered but response time is longer with respect to the right graph._
 
 ### Detailed explanations
 
@@ -79,7 +79,6 @@ BLA::Matrix<Nstate> my_x = K.getxcopy();
 
 And of course you can update your Kalman filter with a new measure
 ```cpp
-BLA::Matrix<Nobs> obs;
 obs = fill_with_sensor_measures(); // grab here your sensor data and fill in the obs vector
 K.update(obs);
 ```
