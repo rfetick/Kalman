@@ -48,6 +48,10 @@ You can also add all the `Kalman` files in the same folder of one of your Arduin
 
 Examples are provided in the so-called `examples/` subfolder. Open them to get an idea on how to use the Kalman library.
 
+![alt text](examples/kalman_python.PNG "Kalman filter applied to noisy data")
+
+The figure above shows two examples of Kalman filter (blue) applied on noisy data (green). The true state (red) is a step function. On the left graph, _Q_ components are chosen small (high inertia). Noise is efficiently filtered but response time is longer with respect to the right graph.
+
 ### Detailed explanations
 
 Using the Kalman library in your Arduino files is (I hope) straightforward. First include the library in your `.ino` file. Also use the `BLA` (BasicLinearAlgebra) namespace since you will need to define some BLA vectors
