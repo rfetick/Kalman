@@ -13,9 +13,9 @@ Other Kalman libraries already exist for Arduino, but so far I have only seen fi
 
 Your state evolution model and state observation are respectively given by the matrix equations
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x<sub>k</sub> = F x<sub>k-1</sub> + B u<sub>k</sub> + q<sub>k</sub>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x<sub>k</sub> = F<sub>k</sub> x<sub>k-1</sub> + B<sub>k</sub> u<sub>k</sub> + q<sub>k</sub>
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;y<sub>k</sub> = H x<sub>k</sub> + r<sub>k</sub>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;y<sub>k</sub> = H<sub>k</sub> x<sub>k</sub> + r<sub>k</sub>
 
 where _k_ is the time step, _x_ the state vector, and _y_ the measurement vector. The full list of definitions and respective dimensions are summarized in the table below.
 
