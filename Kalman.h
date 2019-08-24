@@ -42,22 +42,18 @@ using namespace BLA;
 
 // Diagonal template comes from Tom Stewart
 // https://platformio.org/lib/show/501/BasicLinearAlgebra
-template<int dim, class ElemT> struct Diagonal
-{
+template<int dim, class ElemT> struct Diagonal{
     mutable ElemT m[dim];
-
     // The only requirement on this class is that it implement the () operator like so:
     typedef ElemT elem_t;
 
     ElemT &operator()(int row, int col) const
     {
         static ElemT dummy;
-
         // If it's on the diagonal and it's not larger than the matrix dimensions then return the element
         if(row == col && row < dim)
             return m[row];
         else
-            // Otherwise return a zero
             return (dummy = 0);
     }
 };
@@ -80,7 +76,6 @@ class KALMAN{
     BLA::Matrix<Nobs,Nobs> R; // measure noise covariance matrix
     BLA::Matrix<Nstate,Nstate> P; // (do not modify, except to init!)
     BLA::Matrix<Nstate,1> x; // state vector (do not modify, except to init!)
-    BLA::Matrix<Nobs,1> y; // innovation
     BLA::Matrix<Nobs,Nobs> S;
     BLA::Matrix<Nstate,Nobs> K; // Kalman gain matrix
     int status; // 0 if Kalman filter computed correctly
@@ -121,11 +116,10 @@ void KALMAN<Nstate,Nobs,Ncom>::_update(BLA::Matrix<Nobs> obs, BLA::Matrix<Nstate
   x = F*x+comstate;
   P = F*P*(~F)+Q;
   // ESTIMATION
-  y = obs-H*x;
   S = H*P*(~H)+R;
   K = P*(~H)*S.Inverse(&status);
   if(!status){
-    x += K*y;
+    x += K*(obs-H*x); // K*y
     P = (Id-K*H)*P;
     if(check){
       for(int i=0;i<Nstate;i++){
@@ -180,7 +174,7 @@ KALMAN<Nstate,Nobs,Ncom>::KALMAN(bool verb){
   }
   P.Fill(0.0);
   x.Fill(0.0);
-  Id.Fill(1.0);
+  Id.Fill(1.0); // Diagonal matrix -> only filled on its diagonal
   NULLCOMSTATE.Fill(0.0);
 };
 
