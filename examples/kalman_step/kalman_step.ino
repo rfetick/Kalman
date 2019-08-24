@@ -3,7 +3,7 @@
  * This example simulates an oscillating step-like state.
  * Noisy measurements are simulated with the 'SIMULATOR_' functions. 
  * Play around with 'm1' and 'm2' gains.
- * Results are printed on Serial port. You can use 'kalman_python.py' to analyse them with Python.
+ * Results are printed on Serial port. You can use 'kalman_step.py' to analyse them with Python.
  * 
  * Author:
  *  R.JL. Fétick
