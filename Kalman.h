@@ -40,6 +40,8 @@
 
 using namespace BLA;
 
+// Diagonal template comes from Tom Stewart
+// https://platformio.org/lib/show/501/BasicLinearAlgebra
 template<int dim, class ElemT> struct Diagonal
 {
     mutable ElemT m[dim];
