@@ -42,6 +42,38 @@ Download this project and add it to you `Arduino/libraries/` folder.
 
 You can also add all the `Kalman` files in the same folder of one of your Arduino project for unique usage (not polluting your `library/`)
 
+## Start using the library in your Arduino projects
+
+Using the Kalman library in your Arduino files is (I hope) straightforward. First include the library in your `.ino` file. Also use the `BLA` (BasicLinearAlgebra) namespace since you will need to define some BLA vectors
+```cpp
+#include "Kalman.h"
+using namespace BLA
+```
+
+Then define your number of states, number of observations and eventually number of commands. For the sake of simplicity, we will start without any command
+```cpp
+#define Nstate 2
+#define Nobs 2
+```
+
+You can now define a Kalman filter and an observation vector
+```cpp
+KALMAN<Nstate, Nobs> K;
+BLA::Matrix<Nobs> obs;
+```
+
+In the `setup` and `loop` functions you can now access to all the matrices `K.F`, `K.H`, `K.x`, `K.Q`, `K.R`, `K.P`... You can modify them, but be careful that inloop modifications of `K.x` or `K.P` might lead to unconsistent results! If you want to access to the `K.x` estimate, it is better to use the method
+```cpp
+BLA::Matrix<Nstate> my_x = K.getxcopy();
+```
+
+And of course you can update your Kalman filter with a new measure
+```cpp
+BLA::Matrix<Nobs> obs;
+obs = fill_with_sensor_measures(); // grab here your sensor data and fill in the obs vector
+K.update(obs);
+```
+
 ## License
 
 See the LICENSE file included
