@@ -44,6 +44,12 @@ You can also add all the `Kalman` files in the same folder of one of your Arduin
 
 ## Start using the library in your Arduino projects
 
+### Examples
+
+Examples are provided in the so-called `examples/` subfolder. Open them to get an idea on how to use the Kalman library.
+
+### Detailed explanations
+
 Using the Kalman library in your Arduino files is (I hope) straightforward. First include the library in your `.ino` file. Also use the `BLA` (BasicLinearAlgebra) namespace since you will need to define some BLA vectors
 ```cpp
 #include "Kalman.h"
