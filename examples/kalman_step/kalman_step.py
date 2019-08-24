@@ -2,7 +2,7 @@
 """
 Created on Fri Aug 23 16:23:03 2019
 
-This code works with 'kalman_python.ino'
+This code works with 'kalman_step.ino'
   > Connect your arduino to Serial port
   > Upload the 'kalman_python.ino' to your arduino
   > Eventually modify the port name "COM6" below to match yours
