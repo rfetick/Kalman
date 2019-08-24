@@ -36,13 +36,11 @@ where _k_ is the time step, _x_ the state vector, and _y_ the measurement vector
 
 ### Prerequisites
 
-BasicLinearAlgebra: You might find it in the available libraries in your Arduino IDE, or directly download it at https://github.com/tomstewart89/BasicLinearAlgebra
+`BasicLinearAlgebra`: You might find it in the library manager of your Arduino IDE, or directly download it at https://github.com/tomstewart89/BasicLinearAlgebra
 
 ### Adding the Kalman library
 
-Download this project and add it to you `Arduino/libraries/` folder.
-
-You can also add all the `Kalman` files in the same folder of one of your Arduino project for unique usage (not polluting your `library/`)
+Download this project and add it to your `Arduino/libraries/` folder.
 
 ## Start using the library in your Arduino projects
 
@@ -89,9 +87,11 @@ obs = fill_with_sensor_measures(); // grab here your sensor data and fill in the
 K.update(obs);
 ```
 
-## Notes
+## Possible issues
 
-The library `BLA::Matrix` seems to throw errors for matrices of size `<1,1>`. So the Kalman library will only work for `Nstate>1` and `Nobs>1`. For one-dimensional Kalman filters, please refer to other Arduino libraries.
+* The library `BLA::Matrix` seems to throw errors for matrices of size `<1,1>`. So the Kalman library will only work for `Nstate>1` and `Nobs>1`. For one-dimensional Kalman filters, please refer to other Arduino libraries.
+
+* Size of matrices has to be small due to the limited SRAM memory of Arduino. 
 
 ## License
 
@@ -99,4 +99,4 @@ See the LICENSE file included
 
 ## Contact
 
-Please send me your comments or issues in the Github dedicated `Issues` tab.
+Please send me your comments or issues in the Github dedicated `Issues` tab. It is a work in progress, and your feedback is welcome.
