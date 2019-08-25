@@ -91,7 +91,7 @@ K.update(obs);
 
 * The library `BLA::Matrix` seems to throw errors for matrices of size `<1,1>`. So the Kalman library will only work for `Nstate>1` and `Nobs>1`. For one-dimensional Kalman filters, please refer to other Arduino libraries.
 
-* Size of matrices has to be small due to the limited SRAM memory of Arduino. 
+* Size of matrices has to be small due to the limited SRAM memory of Arduino. This is the main limitation.
 
 ## License
 
@@ -99,4 +99,6 @@ See the LICENSE file included
 
 ## Contact
 
-Please send me your comments or issues in the Github dedicated `Issues` tab. It is a work in progress, and your feedback is welcome.
+Please send me your comments or issues in the Github dedicated `Issues` tab.
+
+This library is a work in progress, and your feedback is welcome. I am looking for advices or contributors to improve the project.
