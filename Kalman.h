@@ -42,6 +42,7 @@ using namespace BLA;
 
 // Diagonal template comes from Tom Stewart
 // https://platformio.org/lib/show/501/BasicLinearAlgebra
+// Could be useful to implement this for R and Q (if applicable, in case of independant variables)
 template<int dim, class ElemT> struct Diagonal{
     mutable ElemT m[dim];
     // The only requirement on this class is that it implement the () operator like so:
@@ -65,9 +66,9 @@ template<int dim, class ElemT> struct Diagonal{
 template<int Nstate, int Nobs, int Ncom = 0>
 class KALMAN{
   private:
-    BLA::Matrix<Nstate,1> NULLCOMSTATE;
+    BLA::Matrix<Nstate> NULLCOMSTATE;
     void _update(BLA::Matrix<Nobs> obs, BLA::Matrix<Nstate> comstate);
-    BLA::Matrix<Nstate,Nstate, Diagonal<Nstate,float> > Id; // Identity matrix
+    BLA::Identity<Nstate,Nstate> Id; // Identity matrix
   public:
     BLA::Matrix<Nstate,Nstate> F; // time evolution matrix
     BLA::Matrix<Nobs,Nstate> H; // observation matrix
@@ -75,7 +76,7 @@ class KALMAN{
     BLA::Matrix<Nstate,Nstate> Q; // model noise covariance matrix
     BLA::Matrix<Nobs,Nobs> R; // measure noise covariance matrix
     BLA::Matrix<Nstate,Nstate> P; // (do not modify, except to init!)
-    BLA::Matrix<Nstate,1> x; // state vector (do not modify, except to init!)
+    BLA::Matrix<Nstate> x; // state vector (do not modify, except to init!)
     BLA::Matrix<Nobs,Nobs> S;
     BLA::Matrix<Nstate,Nobs> K; // Kalman gain matrix
     int status; // 0 if Kalman filter computed correctly
@@ -174,7 +175,6 @@ KALMAN<Nstate,Nobs,Ncom>::KALMAN(bool verb){
   }
   P.Fill(0.0);
   x.Fill(0.0);
-  Id.Fill(1.0); // Diagonal matrix -> only filled on its diagonal
   NULLCOMSTATE.Fill(0.0);
 };
 
