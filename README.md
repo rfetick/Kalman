@@ -1,7 +1,11 @@
 # Kalman
-Implement Kalman filter for your Arduino projects
+**Implement Kalman filter for your Arduino projects**
 
-Version: see VERSION.md
+:information_source: See the [VERSION](VERSION.md) file
+
+:ballot_box_with_check: See the [LICENSE](LICENSE) file
+
+:arrows_counterclockwise: Your feedback is important for improving this library. See the _Contact_ section at the end of this file
 
 ## Description
 
@@ -92,10 +96,6 @@ K.update(obs);
 * The library `BLA::Matrix` seems to throw errors for matrices of size `<1,1>`. So the Kalman library will only work for `Nstate>1` and `Nobs>1`. For one-dimensional Kalman filters, please refer to other Arduino libraries.
 
 * Size of matrices has to be small due to the limited SRAM memory of Arduino. This is the main limitation.
-
-## License
-
-See the LICENSE file included
 
 ## Contact
 
