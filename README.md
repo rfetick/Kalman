@@ -1,7 +1,7 @@
 # Kalman
 Implement Kalman filter for your Arduino projects
 
-Version: 1.0.0 (24 Aug 2019)
+Version: see VERSION.md
 
 ## Description
 
