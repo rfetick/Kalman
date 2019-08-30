@@ -101,4 +101,4 @@ See the LICENSE file included
 
 Please send me your comments or issues in the Github dedicated `Issues` tab.
 
-This library is a work in progress, and your feedback is welcome. I am looking for advices or contributors to improve the project.
+This library is a work in progress, and your feedback is welcome at [this link](https://groups.google.com/forum/#!forum/kalman-for-arduino). I am looking for advices or contributors to improve the project.
