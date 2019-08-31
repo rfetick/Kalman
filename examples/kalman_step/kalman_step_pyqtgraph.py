@@ -5,10 +5,13 @@ Created on Fri Aug 23 16:23:03 2019
 This code works with 'kalman_step.ino'
   > Connect your arduino to Serial port
   > Upload the 'kalman_python.ino' to your arduino
-  > Eventually modify the port name "COM6" below to match yours
+  > Eventually modify the port name "COM7" below to match yours
   > Run this code while your arduino transmits data
 
 To run this correctly you need the Python libraries Serial, Numpy and PyQtGraph
+
+PyQtGraph allows for real time viewing.
+If not installed, please use the '_matplotlib.py' code
 
 @author: rfetick
 """
