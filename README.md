@@ -1,4 +1,4 @@
-# Kalman
+# Kalman ![bdg](https://img.shields.io/github/license/rfetick/Kalman?style=plastic)
 **Implement Kalman filter for your Arduino projects**
 
 :information_source: See the [VERSION](VERSION.md) file
