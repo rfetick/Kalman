@@ -167,7 +167,7 @@ void KALMAN<Nstate,Nobs,Ncom,MemF>::_update(BLA::Matrix<Nobs> obs, BLA::Matrix<N
   if(KALMAN_CHECK){
     for(int i=0;i<Nobs;i++){
       if(isnan(obs(i)) || isinf(obs(i))){
-        if(KALMAN_VERBOSE){Serial.println("KALMAN:ERROR: observation has nan or inf values");}
+        if(KALMAN_VERBOSE){Serial.println(F("KALMAN:ERROR: observation has nan or inf values"));}
         status = 1;
         return;
       }
@@ -187,14 +187,14 @@ void KALMAN<Nstate,Nobs,Ncom,MemF>::_update(BLA::Matrix<Nobs> obs, BLA::Matrix<N
     if(KALMAN_CHECK){
       for(int i=0;i<Nstate;i++){
         if(isnan(x(i)) || isinf(x(i))){
-          if(KALMAN_VERBOSE){Serial.println("KALMAN:ERROR: estimated vector has nan or inf values");}
+          if(KALMAN_VERBOSE){Serial.println(F("KALMAN:ERROR: estimated vector has nan or inf values"));}
           status = 1;
           return;
         }
       }
     }
   }else{
-    if(KALMAN_VERBOSE){Serial.println("KALMAN:ERROR: could not invert S matrix. Try to reset P matrix.");}
+    if(KALMAN_VERBOSE){Serial.println(F("KALMAN:ERROR: could not invert S matrix. Try to reset P matrix."));}
     P.Fill(0.0); // try to reset P. Better strategy?
     K.Fill(0.0);
   }
@@ -207,7 +207,7 @@ void KALMAN<Nstate,Nobs,Ncom,MemF>::update(BLA::Matrix<Nobs> obs, BLA::Matrix<Nc
   if(KALMAN_CHECK){
     for(int i=0;i<Ncom;i++){
       if(isnan(com(i)) || isinf(com(i))){
-        if(KALMAN_VERBOSE){Serial.println("KALMAN:ERROR: command has nan or inf values");}
+        if(KALMAN_VERBOSE){Serial.println(F("KALMAN:ERROR: command has nan or inf values"));}
         status = 1;
         return;
       }
@@ -229,9 +229,9 @@ void KALMAN<Nstate,Nobs,Ncom,MemF>::update(BLA::Matrix<Nobs> obs){
 template <int Nstate, int Nobs, int Ncom, class MemF>
 KALMAN<Nstate,Nobs,Ncom,MemF>::KALMAN(){
   if(KALMAN_VERBOSE){
-    Serial.println("KALMAN:INFO: Initialize filter");
+    Serial.println(F("KALMAN:INFO: Initialize filter"));
     if((Nstate<=1)||(Nobs<=1)){
-      Serial.println("KALMAN:ERROR: 'Nstate' and 'Nobs' must be > 1");
+      Serial.println(F("KALMAN:ERROR: 'Nstate' and 'Nobs' must be > 1"));
     }
   }
   P.Fill(0.0);
