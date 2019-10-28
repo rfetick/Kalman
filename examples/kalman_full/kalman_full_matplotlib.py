@@ -4,7 +4,7 @@ Created on Sat Aug 31 17:16:57 2019
 
 This code works with 'kalman_full.ino'
   > Connect your arduino to Serial port
-  > Upload the 'kalman_python.ino' to your arduino
+  > Upload the 'kalman_full.ino' to your arduino
   > Eventually modify the port name "COM7" below to match yours
   > Run this code while your arduino transmits data
 
