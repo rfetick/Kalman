@@ -1,5 +1,26 @@
 ## Start using the library in your Arduino projects
 
+### Equations
+
+Your state evolution model and state observation are respectively given by the matrix equations
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x<sub>k</sub> = F<sub>k</sub> x<sub>k-1</sub> + B<sub>k</sub> u<sub>k</sub> + q<sub>k</sub>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;y<sub>k</sub> = H<sub>k</sub> x<sub>k</sub> + r<sub>k</sub>
+
+where _k_ is the time step, _x_ the state vector, and _y_ the measurement vector. The full list of definitions and respective dimensions are summarized in the table below.
+
+| NAME | DIMENSION       | DEFINITION                       |
+|------|-----------------|----------------------------------|
+| x    | Nstate          | State vector                     |
+| F    | Nstate x Nstate | Time evolution matrix            |
+| B    | Nstate x Ncom   | Command matrix (optional)        |
+| u    | Ncom            | Command vector                   |
+| Q    | Nstate x Nstate | Model covariance (~1/inertia)    |
+| y    | Nobs            | Observation vector (measurement) |
+| H    | Nobs x State    | Observation matrix               |
+| R    | Nobs x Nobs     | Noise covariance                 |
+
 ### Examples
 
 Examples are provided in the so-called `examples/` subfolder. Open them to get an idea on how to use the Kalman library.

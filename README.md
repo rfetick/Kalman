@@ -5,7 +5,7 @@
 
 :ballot_box_with_check: Tested successfully on _Arduino Uno_ and _Nano_ (ATmega 328P old bootloader) 
 
-:arrows_counterclockwise: Any issue or successful test? Your feedback is important for improving this library. See the _Contact_ section at the end of this file
+:arrows_counterclockwise: Any issue or successful test? Your feedback is important for improving this library. See the _Contact_ section at the end of this file or write to the [Group](https://groups.google.com/forum/#!forum/kalman-for-arduino).
 
 ## Description
 
@@ -14,27 +14,6 @@
 Other Kalman libraries already exist for Arduino, but so far I have only seen filters applied to independent scalars. The matricial implementation of this project allows to use the full power of the Kalman filter to coupled variables. It allows to merge measurements from multiple sensors such as accelerometers, GPS, ultrasound (distance) or pressure (altitude) sensors...
 
 This library is adapted to your most sophisticated projects. In order to use it you need some knowledge about matrix formalism and be able to write (or find on internet) the actual state equations of your system.
-
-### Equations
-
-Your state evolution model and state observation are respectively given by the matrix equations
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x<sub>k</sub> = F<sub>k</sub> x<sub>k-1</sub> + B<sub>k</sub> u<sub>k</sub> + q<sub>k</sub>
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;y<sub>k</sub> = H<sub>k</sub> x<sub>k</sub> + r<sub>k</sub>
-
-where _k_ is the time step, _x_ the state vector, and _y_ the measurement vector. The full list of definitions and respective dimensions are summarized in the table below.
-
-| NAME | DIMENSION       | DEFINITION                       |
-|------|-----------------|----------------------------------|
-| x    | Nstate          | State vector                     |
-| F    | Nstate x Nstate | Time evolution matrix            |
-| B    | Nstate x Ncom   | Command matrix (optional)        |
-| u    | Ncom            | Command vector                   |
-| Q    | Nstate x Nstate | Model covariance (~1/inertia)    |
-| y    | Nobs            | Observation vector (measurement) |
-| H    | Nobs x State    | Observation matrix               |
-| R    | Nobs x Nobs     | Noise covariance                 |
 
 ## Installing
 
