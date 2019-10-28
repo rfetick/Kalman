@@ -5,17 +5,15 @@
 
 :ballot_box_with_check: Tested successfully on _Arduino Uno_ and _Nano_ (ATmega 328P old bootloader) 
 
-:arrows_counterclockwise: Any issue or successful test? Your feedback is important for improving this library. See the _Contact_ section at the end of this file or write to the [Group](https://groups.google.com/forum/#!forum/kalman-for-arduino).
+:arrows_counterclockwise: Any issue or successful test? Your feedback is important for improving this library. See the _Contact_ section at the end of this file or write to the [Group](https://groups.google.com/forum/#!forum/kalman-for-arduino)!
 
 ## Description
-
-### Motivation
 
 Other Kalman libraries already exist for Arduino, but so far I have only seen filters applied to independent scalars. The matricial implementation of this project allows to use the full power of the Kalman filter to coupled variables. It allows to merge measurements from multiple sensors such as accelerometers, GPS, ultrasound (distance) or pressure (altitude) sensors...
 
 This library is adapted to your most sophisticated projects. In order to use it you need some knowledge about matrix formalism and be able to write (or find on internet) the actual state equations of your system.
 
-## Installing
+## Installation
 
 ### Prerequisites
 
