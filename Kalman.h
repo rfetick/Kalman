@@ -31,9 +31,9 @@
 #ifndef Kalman_h
 #define Kalman_h
 
-#include "BasicLinearAlgebra.h" // MODIFIED! from <> to ""
+#include <BasicLinearAlgebra.h>
 
-#include "Arduino.h"
+#include <Arduino.h>
 
 #define KALMAN_CHECK true
 #define KALMAN_VERBOSE false
