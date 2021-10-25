@@ -20,30 +20,32 @@ using namespace BLA;
 /****  MODELIZATION PARAMETERS  ****/
 //------------------------------------
 
-#define Nstate 2
-#define Nobs 2
+// Dimensions of the matrices
+#define Nstate 2 // length of the state vector
+#define Nobs 2   // length of the measurement vector
 
-// measurement std
-#define n1 0.2
-#define n2 0.2
+// measurement std (to be characterized from your sensors)
+#define n1 0.2 // noise on the 1st measurement component
+#define n2 0.1 // noise on the 2nd measurement component 
+
 // model std (1/inertia)
 #define m1 0.01
 #define m2 0.05
 
-
 BLA::Matrix<Nobs> obs; // observation vector
 KALMAN<Nstate,Nobs> K; // your Kalman filter
+
+// Note: I made 'obs' a global variable so memory is allocated before the loop.
+//       This might provide slightly better speed efficiency in loop.
+
 
 //------------------------------------
 /****    SIMULATOR PARAMETERS   ****/
 //------------------------------------
 
 BLA::Matrix<Nstate> state; // true state vector for simulation
-BLA::Matrix<Nstate> state_var; // state variations from the model
-BLA::Matrix<Nobs> noise; // additive noise for simulation
 
-#define LOOP_DELAY 10 // add delay in the simulation
-#define SIMUL_FREQ 250 // oscillating frequency (in units of steps)
+#define SIMUL_FREQ 250 // oscillating frequency
 int SIMUL_STEP = 0; // step counter
 
 //------------------------------------
@@ -76,13 +78,17 @@ void setup() {
 
 void loop() {
 
-  // SIMULATE NOISY MEASUREMENT
+  // UPDATE THE SIMULATED PHYSICAL PROCESS
   SIMULATOR_UPDATE();
+  
+  // SIMULATE NOISY MEASUREMENT
+  // Result of the measurement is written into 'obs'
+  SIMULATOR_MEASURE();
   
   // APPLY KALMAN FILTER
   K.update(obs);
 
-  // PRINT RESULTS: true state, measures, estimated state
+  // PRINT RESULTS: true state, measurement, estimated state
   Serial << state << ' ' << obs << ' ' << K.x << '\n';
 }
 
@@ -94,15 +100,11 @@ void SIMULATOR_INIT(){
   randomSeed(analogRead(0));
   state(0) = 0.0;
   state(1) = 0.0;
-  state_var(0) = 0.0;
-  state_var(1) = 0.0;
 }
 
 void SIMULATOR_UPDATE(){
-  // eventually update state variations with your own function
-  // (e.g. system unknown accelerations)
-  // strong variations will be smoothed by Kalman filter
-  // due to the balance between noise filtering and reactivity
+  // Simulate a physical process
+  BLA::Matrix<Nstate> state_var; // state variations from the model
   state_var(0) = 0.0; 
   state_var(1) = 0.0;
   // Step-like function
@@ -116,14 +118,17 @@ void SIMULATOR_UPDATE(){
   }
   
   state = K.F * state + state_var; // time evolution
-  noise(0) = n1 * SIMULATOR_GAUSS_NOISE();
-  noise(1) = n2 * SIMULATOR_GAUSS_NOISE();
-  obs = K.H * state + noise; // measure
   
   SIMUL_STEP += 1;
   SIMUL_STEP = SIMUL_STEP % SIMUL_FREQ;
-  
-  delay(LOOP_DELAY); //add a delay in loop
+}
+
+void SIMULATOR_MEASURE(){
+  // Simulate a noisy measurement of the physical process
+  BLA::Matrix<Nobs> noise;
+  noise(0) = n1 * SIMULATOR_GAUSS_NOISE();
+  noise(1) = n2 * SIMULATOR_GAUSS_NOISE();
+  obs = K.H * state + noise; // measurement
 }
 
 double SIMULATOR_GAUSS_NOISE(){
