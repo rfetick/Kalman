@@ -180,8 +180,9 @@ void KALMAN<Nstate,Nobs,Ncom,MemF>::_update(BLA::Matrix<Nobs> obs, BLA::Matrix<N
   this->P = this->F * this->P * (~ this->F) + this->Q;
   // ESTIMATION
   S = this->H * this->P * (~ this->H) + this->R;
-  K = this->P * (~ this->H) * S.Inverse(&status);
-  if(!status){
+  bool is_nonsingular = Invert(S); // inverse inplace (S <- S^{-1})
+  K = P*(~H)*S;
+  if(is_nonsingular){
     this->x += K*(obs - this->H * this->x); // K*y
     this->P = (this->Id - K * this->H)* this->P;
     if(KALMAN_CHECK){
