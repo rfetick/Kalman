@@ -36,7 +36,7 @@ See also the `examples\` folder.
 
 * The library `BLA::Matrix` seems to throw errors for matrices of size `<1,1>`. So the Kalman library will only work for `Nstate>1` and `Nobs>1`. For one-dimensional Kalman filters, please refer to other Arduino libraries.
 
-* The library is not compatible with the version 3 of the `BasicLinearAlgebra`. Please download the previous version of `BasicLinearAlgebra`. I am working on this compatibility issue.
+* In case of issues with matrices computation please make sure to use the latest version of `BasicLinearAlgebra`. It works fine on my side with `BasicLinearAlgebra` version `3.2`, however compatibilities issues may occur with different versions.
 
 * Size of matrices has to be relatively small due to the limited SRAM memory of Arduino. Effort has been made to reduce SRAM usage.
 
