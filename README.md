@@ -20,6 +20,9 @@ This library is adapted to your most sophisticated projects. In order to use it 
 
 `BasicLinearAlgebra`: You might find it in the library manager of your Arduino IDE, or directly download it at https://github.com/tomstewart89/BasicLinearAlgebra
 
+> [!WARNING]
+> It seems that the Kalman library is not compatible with the version `4` of `BasicLinearAlgebra`. You might need to install version `3.XX`. See [issue#8](https://github.com/rfetick/Kalman/issues/8) and [issue#9](https://github.com/rfetick/Kalman/issues/9).
+
 ### 2. Downloading the Kalman library
 
 This library is available in the official Arduino library manager. Just type `Kalman` and you should find it.
