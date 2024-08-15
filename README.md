@@ -2,11 +2,11 @@
 
 **Implement Kalman filter for your Arduino projects**
 
-:information_source: Visit the github project's page https://github.com/rfetick/Kalman
+- Github project's page: https://github.com/rfetick/Kalman
 
-:ballot_box_with_check: Tested successfully on _Arduino Uno_ and _Nano_ (ATmega 328P old bootloader) 
+- Tested successfully on _Arduino Uno_ and _Nano_ (ATmega 328P old bootloader) 
 
-:arrows_counterclockwise: Any suggestion or issue? Please write to https://github.com/rfetick/Kalman/issues
+- Any suggestion or issue? Please first check the issue section below and then write to https://github.com/rfetick/Kalman/issues
 
 ## I. Long description
 
@@ -40,6 +40,8 @@ See also the `examples\` folder.
 * The library `BLA::Matrix` seems to throw errors for matrices of size `<1,1>`. So the Kalman library will only work for `Nstate>1` and `Nobs>1`. For one-dimensional Kalman filters, please refer to other Arduino libraries.
 
 * In case of issues with matrices computation please make sure to use the latest version of `BasicLinearAlgebra`. It works fine on my side with `BasicLinearAlgebra` version `3.2`, however compatibilities issues may occur with different versions.
+
+* Compilation issues with ESP32. Please see [issue#10](https://github.com/rfetick/Kalman/issues/10)
 
 * Size of matrices has to be relatively small due to the limited SRAM memory of Arduino. Effort has been made to reduce SRAM usage.
 
