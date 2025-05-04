@@ -33,6 +33,7 @@
 
 #include <BasicLinearAlgebra.h>
 
+
 #include <Arduino.h>
 
 #define KALMAN_CHECK true
@@ -128,11 +129,11 @@ template<int dim, class ElemT> struct Diagonal{
 /**********      CLASS DEFINITION      **********/
 
 // Last arg of template allows to eventually define Symmetric, AntiSymmetric, TriangularSup or TriangularInf matrices for memory saving
-template<int Nstate, int Nobs, int Ncom = 0, class MemF = Array<Nstate,Nstate,float> >
+template<int Nstate, int Nobs, int Ncom = 0, class MemF = BLA::Matrix<Nstate,Nstate,float> >
 class KALMAN{
   private:
     void _update(BLA::Matrix<Nobs> obs, BLA::Matrix<Nstate> comstate);
-    BLA::Identity<Nstate,Nstate> Id; // Identity matrix
+    BLA::Matrix<Nstate,Nstate> Id; // Identity matrix
   public:
 	//INPUT MATRICES			
     BLA::Matrix<Nstate,Nstate,MemF> F; // time evolution matrix
